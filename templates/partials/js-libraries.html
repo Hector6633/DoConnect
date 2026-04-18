@@ -1,0 +1,20 @@
+{% load partials %}
+{% load static %}
+
+{% partialdef scripts %}
+
+        <!-- JavaScript Libraries -->
+        <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+        <script src="{% static "vendor/jquery/jquery-migrate.min.js" %}"></script>
+        <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+        <script src="{% static "vendor/easing/easing.min.js" %}"></script>
+        <script src="{% static "vendor/stickyjs/sticky.js" %}"></script>
+        <script src="{% static "vendor/superfish/hoverIntent.js" %}"></script>
+        <script src="{% static "vendor/superfish/superfish.min.js" %}"></script>
+        <script src="{% static "vendor/owlcarousel/owl.carousel.min.js" %}"></script>
+        <script src="{% static "vendor/touchSwipe/jquery.touchSwipe.min.js" %}"></script>
+
+        <!-- Main Javascript File -->
+        <script src="{% static "js/main.js" %}"></script>
+
+{% endpartialdef %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load partials %}
+
+    {% include "partials/components.html#header" %}
+
+    <body>
+        <!-- Top Header Start -->
+        {% include "partials/components.html#topheader" %}
+        <!-- Top Header End -->
+
+        <!-- Header Start -->
+        {% include "partials/components.html#navbar" %}
+        <!-- Header End -->
+
+        <main id="main">
+
+            <!-- Contact Section Start -->
+            <section id="contact" class="section-bg wow fadeInUp">
+                <div class="container">
+                    <div class="section-header">
+                        <h3>Contact Us</h3>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-detail">
+                                <div class="contact-hours">
+                                    <h4>Opening Hours</h4>
+                                    <p>Monday-Friday: 9am to 7pm</p>
+                                    <p>Saturday: 9am to 4pm</p>
+                                    <p>Sunday: Closed</p>
+                                </div>
+                                
+                                <div class="contact-info">
+                                    <h4>Contact Info</h4>
+                                    <p>4137  State Street, CA, USA</p>
+                                    <p><a href="tel:+1-234-567-8900">+1-234-567-8900</a></p>
+                                    <p><a href="mailto:info@example.com">info@example.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="contact-form">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" placeholder="Your Name" required="required" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="email" class="form-control" placeholder="Your Email" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Subject" required="required" />
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" placeholder="Message" required="required" ></textarea>
+                                    </div>
+                                    <div><button type="submit">Send Message</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- #contact end -->
+            
+            <!-- Section Start -->
+            <section id="subscriber">
+                <div class="container">
+                    <h3>Best Service Providing</h3>
+                </div>
+            </section>
+            <!-- Section end -->
+            
+            <!-- Support Section Start -->
+            <section id="support" class="wow fadeInUp">
+                <div class="container">
+                    <h1>
+                        Need help? Call me 24/7 at +1-234-567-8900
+                    </h1>
+                </div>
+            </section>
+            <!-- Support Section end -->
+
+        </main>
+
+        <!-- Footer Start -->
+        {% include "partials/components.html#footer" %}
+        <!-- Footer end -->
+
+        {% include "partials/js-libraries.html#scripts" %}
+
+    </body>
+</html>

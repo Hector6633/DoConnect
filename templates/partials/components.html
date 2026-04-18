@@ -1,0 +1,91 @@
+{% load partials %}
+{% load static %}
+
+{% comment %} Main Header {% endcomment %}
+{% partialdef header %}
+
+<head>
+        <meta charset="utf-8">
+        <title>DoConnect</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Favicons -->
+        <link href="{% static "img/favicon.ico" %}" rel="icon">
+        <link href="{% static "img/apple-touch-icon.png" %}" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Nunito:600,700,800,900" rel="stylesheet"> 
+
+        <!-- Bootstrap CSS File -->
+        <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+        <!-- Libraries CSS Files -->
+        <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+        <link href="{% static "vendor/animate/animate.min.css" %}" rel="stylesheet">
+        <link href="{% static "vendor/ionicons/css/ionicons.min.css" %}" rel="stylesheet">
+        <link href="{% static "vendor/owlcarousel/assets/owl.carousel.min.css" %}" rel="stylesheet">
+
+        <!-- Main Stylesheet File -->
+        <link href="{% static "css/hover-style.css" %}" rel="stylesheet">
+        <link href="{% static "css/style.css" %}" rel="stylesheet">
+    </head>
+
+{% endpartialdef %}
+
+{% comment %} Top Header {% endcomment %}
+{% partialdef topheader %}
+
+<section class="top-header">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1><a href="{% url "index" %}">Dr. Johnson</a></h1>
+                        <!-- <a class="brand" href="index.html" title="Home"><img alt="Logo" src="img/logo.png"></a> -->
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h2>Your Family Doctor</h2>
+                    <a class="btn btn-full" href="{% url "booking" %}">Book an Appointment</a>
+                </div>
+            </div>
+        </section>
+
+{% endpartialdef %}
+
+{% comment %} Navbar {% endcomment %}
+{% partialdef navbar %}
+
+<header id="header">
+            <div class="container">
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="{% if request.resolver_match.url_name == 'index' %}menu-active{% endif %}"><a href="{% url "index" %}">Home</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'about' %}menu-active{% endif %}"><a href="{% url "about" %}">About</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'service' %}menu-active{% endif %}"><a href="{% url "service" %}">Services</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'booking' %}menu-active{% endif %}"><a href="{% url "booking" %}">Booking</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'contact' %}menu-active{% endif %}"><a href="{% url "contact" %}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+{% endpartialdef %}
+
+{% comment %} Footer Section {% endcomment %}
+{% partialdef footer %}
+
+<footer id="footer">
+            <div class="container">
+                <div class="copyright">
+					<p>&copy; Copyright <a href="https://doconnect.pythonanywhere.com">DoConnect</a>. All Rights Reserved</p>
+								
+					<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+					<p>Designed By <a href="https://rajeevportfolio.pythonanywhere.com">Rajeev</a></p>
+                </div>
+            </div>
+        </footer>
+
+{% endpartialdef %}
