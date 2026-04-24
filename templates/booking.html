@@ -25,50 +25,63 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="booking-form">
-                                <form>
+                                {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-success" role="alert">
+                                        <h1{% if message.tags %} class="{{ message.tags }}" {% endif %}><strong>{{ message }}<strong><h1>
+                                    </div>
+                                {% endfor %}
+                                {% endif %}
+                                <form method="post" action="{% url "booking" %}">
+                                    {% csrf_token %}
                                     <div class="form-row">
                                         <div class="control-group col-sm-6">
-                                            <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="E.g. John Sina" required="required" />
+                                            <label>Full Name</label>
+                                            <input type="text" name="full_name" class="form-control" placeholder="E.g. John Sina" required="required" />
                                         </div>
                                         <div class="control-group col-sm-6">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" placeholder="E.g. email@example.com" required="required" />
+                                            <input type="email" name="email" class="form-control" placeholder="E.g. email@example.com" required="required" />
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="control-group col-sm-6">
                                             <label>Mobile</label>
-                                            <input type="text" class="form-control" placeholder="E.g. +1 234 567 8900" required="required" />
+                                            <input type="text" name="mob_number" maxlength="10" class="form-control" placeholder="E.g. +91" required="required" />
                                         </div>
                                         <div class="control-group col-sm-6">
                                             <label>Select a Service</label>
-                                            <select class="custom-select">
-                                                <option value="">Consultation</option>
-                                                <option>Health Checkup</option>
-                                                <option>Flu Shots</option>
-                                                <option>Blood Test</option>
-                                                <option>Physical Exams</option>
-                                                <option>Prevention</option>
-                                                <option>Family Planning</option>
-                                                <option>Home Visits</option>
-                                                <option>Insurance</option>
+                                            <select name="service" required class="custom-select">
+                                                <option value="Consultation">Consultation</option>
+                                                <option value="Health Checkup">Health Checkup</option>
+                                                <option value="Flu Shots">Flu Shots</option>
+                                                <option value="Blood Test">Blood Test</option>
+                                                <option value="Physical Exams">Physical Exams</option>
+                                                <option value="Prevention">Prevention</option>
+                                                <option value="Family Planning">Family Planning</option>
+                                                <option value="Home Visits">Home Visits</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="control-group col-sm-6">
                                             <label>Appointment Date</label>
-                                            <input type="text" class="form-control datetimepicker-input" id="date" data-toggle="datetimepicker" data-target="#date" placeholder="E.g. MM/DD/YYYY" required="required" />
+                                            <input type="date" name="appointment_date" class="form-control datetimepicker-input" id="date" data-toggle="datetimepicker" data-target="#date" required="required" />
                                         </div>
                                         <div class="control-group col-sm-6">
                                             <label>Appointment Time</label>
-                                            <input type="text" class="form-control datetimepicker-input" id="time" data-toggle="datetimepicker" data-target="#time" placeholder="E.g. HH:MM AM" required="required" />
+                                            <select name="appointment_time" required class="custom-select">
+                                                <option value="4:00 PM">4:00 PM</option>
+                                                <option value="5:00 PM">5:00 PM</option>
+                                                <option value="6:00 PM">6:00 PM</option>
+                                                <option value="7:00 PM">7:00 PM</option>
+                                                <option value="8:00 PM">8:00 PM</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label>Special Request</label>
-                                        <input type="text" class="form-control" placeholder="E.g. Special Request" required="required" />
+                                        <input type="text" name="special_request" class="form-control" placeholder="E.g. Special Request" />
                                     </div>
                                     <div class="button"><button type="submit">Book Now</button></div>
                                 </form>
