@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from . models import *
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
 
 def index(request):
     return render(request, 'index.html')
@@ -34,9 +36,19 @@ def booking(request):
             else:
                 appointment_data = Appointment.objects.create(full_name=full_name, email=email, mobile_number=mob_number, service=service, appointment_date=appointment_date, appointment_time=appointment_time, special_request=special_request)
                 appointment_data.save()
-                success_msg = 'Appointment Booked Successfully'
-                messages.success(request, success_msg)
-                return redirect('booking')
+                subject = "DoConnect Appointment Confirmation"
+                message = f"Dear {full_name},\nYour appointment successfully booked.\nHere is your Appointment Details:\n\tFull Name: {full_name}\n\tMobile Number:{mob_number}\n\tService: {service}\n\tAppointment Date: {appointment_date}\n\tAppointment Time: {appointment_time}\nPlease keep this email for your records and do not forward or share any other person.\nTo get started, please visit our website at https://www.doconnect.pythonanywhere.com/ and use our services.\nBest Regards,\nDoConnect Team"
+                recipient = email
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [recipient],
+                fail_silently=True,
+            )
+            success_msg = 'Appointment Booked Successfully'
+            messages.success(request, success_msg)
+            return redirect('booking')
         except Exception as e:
             error_msg = 'Something went wrong!'
             messages.error(request, error_msg)
@@ -52,6 +64,16 @@ def contact(request):
             message = request.POST.get('message')
             customer_contact_data = Contact_Info.objects.create(name=name, email=email, number=number, message=message)
             customer_contact_data.save()
+            subject = "DoConnect Feedback"
+            message = f"Dear {name},\nThank You for your feedback with DoConnect. Our advisor will verify and get in touch with you.\nPlease keep this email for your records and do not forward or share any other person.\nTo get started, please visit our website at https://doconnect.pythonanywhere.com/ and use our services.\nBest Regards, \nDoConnect Team"
+            recipient = email
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [recipient],
+                fail_silently=True,
+            )
             success_msg = 'Registered'
             messages.success(request, success_msg)
             return redirect('contact')
