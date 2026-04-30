@@ -5,7 +5,7 @@ class ContactInfoAdmin(admin.ModelAdmin):
     readonly_fields = ('date_time',)
     
 class AppointmentInfo(admin.ModelAdmin):
-    list_display = ('full_name', 'email', 'mobile_number', 'service', 'appointment_date', 'appointment_time', 'special_request', 'booked_date_time')
+    list_display = ('token_number', 'full_name', 'email', 'mobile_number', 'service', 'appointment_date', 'appointment_time', 'special_request', 'booked_date_time')
     readonly_fields = ('booked_date_time',)
 
 admin.site.register(Contact_Info, ContactInfoAdmin)

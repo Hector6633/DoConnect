@@ -19,6 +19,7 @@ class Appointment(models.Model):
     appointment_date = models.DateField()
     appointment_time = models.CharField(max_length=10)
     special_request = models.TextField()
+    token_number = models.PositiveIntegerField()
     booked_date_time = models.DateTimeField(auto_now_add=True)
     
     class Meta:
