@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load partials %}
+
+    {% include "partials/components.html#header" %}
+
+    <body>
+        <!-- Top Header Start -->
+        {% include "partials/components.html#topheader" %}
+        <!-- Top Header End -->
+
+        <!-- Header Start -->
+        {% include "partials/components.html#navbar" %}
+        <!-- Header End -->
+
+		<main id="main">
+
+			<!-- Login Section Start -->
+			<section id="login">
+				<div class="container">
+					<div class="section-header">
+						<h3>Sign In</h3>
+					</div>
+					<div class="row">
+						
+                        <div class="col-md-6 form">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-success" role="alert">
+                                        <h1{% if message.tags %} class="{{ message.tags }}" {% endif %}><strong>{{ message }}<strong><h1>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+							<form method="post" action="{% url "sign_in" %}">
+                                {% csrf_token %}
+								<div class="form-group">
+									<input type="text" required name="username" class="form-control" placeholder="Your Username" />
+								</div>
+								<div class="form-group">
+									<input type="password" maxlength="8" name="password" required class="form-control" placeholder="Your Password" />
+								</div>
+								<div class="form-group">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="remember2">
+										<label class="custom-control-label" for="remember2">Remember me</label>
+									</div>
+								</div>
+								<div><button type="submit">Sign In</button></div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			<!-- Login Section end -->
+
+            
+            <!-- Support Section Start -->
+            <section id="support" class="wow fadeInUp">
+                <div class="container">
+                    <h1>
+                        Need help? Call me 24/7 at +91 9287672041
+                    </h1>
+                </div>
+            </section>
+            <!-- Support Section end -->
+
+        </main>
+
+        <!-- Footer Start -->
+        {% include "partials/components.html#footer" %}
+        <!-- Footer end -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        <!-- Uncomment below i you want to use a preloader -->
+        <!-- <div id="preloader"></div> -->
+
+        <!-- JavaScript Libraries -->
+        {% include "partials/js-libraries.html#scripts" %}
+
+        
+
+    </body>
+</html>
+
+

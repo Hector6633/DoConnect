@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'livereload',
     'template_partials',
     'app',
+    'accounts',
 ]
 
 MIDDLEWARE = [
