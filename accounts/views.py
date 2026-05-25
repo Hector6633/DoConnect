@@ -5,7 +5,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from . auth import unauthenticated_user
 # Create your views here.
+@unauthenticated_user
 def sign_up(request):
     if request.method == 'POST':
         try:
@@ -32,6 +34,7 @@ def sign_up(request):
             return redirect('sign_up')
     return render(request, 'sign-up.html')
 
+@unauthenticated_user
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -48,5 +51,7 @@ def sign_in(request):
 
 @login_required(login_url='sign_in')
 def sign_out(request):
+    success_msg = 'Logged Out'
+    messages.success(request, success_msg)
     logout(request)
     return redirect('sign_in')

@@ -72,10 +72,17 @@
                             <ul>
                                 <li><a href="{% url "sign_up" %}">Sign Up</a></li>
                                 <li><a href="{% url "sign_in" %}">Sign In</a></li>
+                                {% if user.is_authenticated %}
                                 <li><a href="{% url "sign_out" %}">Sign Out</a></li>
+                                {% endif %}
                             </ul>
                         </li>
                         <li class="{% if request.resolver_match.url_name == 'contact' %}menu-active{% endif %}"><a href="{% url "contact" %}">Contact</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url "index" %}">Hi, {{user.username}}</a></li>
+                        {% else %}
+                        <li><a href="{% url "index" %}">Hello, I'm DoConnect</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>

@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'index.html')
@@ -14,6 +15,7 @@ def about(request):
 def service(request):
     return render(request, 'service.html')
 
+@login_required(login_url='sign_in')
 def booking(request):
     if request.method == 'POST':
         try:

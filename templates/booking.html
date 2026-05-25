@@ -37,11 +37,11 @@
                                     <div class="form-row">
                                         <div class="control-group col-sm-6">
                                             <label>Full Name</label>
-                                            <input type="text" name="full_name" class="form-control" placeholder="E.g. John Sina" required="required" />
+                                            <input type="text" value="{{user.username}}" name="full_name" class="form-control" readonly />
                                         </div>
                                         <div class="control-group col-sm-6">
                                             <label>Email</label>
-                                            <input type="email" name="email" class="form-control" placeholder="E.g. email@example.com" required="required" />
+                                            <input type="email" value="{{user.email}}" name="email" class="form-control" readonly />
                                         </div>
                                     </div>
                                     <div class="form-row">
