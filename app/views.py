@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
-
+from datetime import date, datetime
 def index(request):
     return render(request, 'index.html')
 
@@ -17,6 +17,7 @@ def service(request):
 
 @login_required(login_url='sign_in')
 def booking(request):
+    today_date = date.today().isoformat()
     if request.method == 'POST':
         try:
             full_name = request.POST.get('full_name')
@@ -24,6 +25,10 @@ def booking(request):
             mob_number = request.POST.get('mob_number')
             service = request.POST.get('service')
             appointment_date = request.POST.get('appointment_date')
+            selected_date = datetime.strptime(appointment_date, "%Y-%m-%d").date()
+            if selected_date < datetime.today().date():
+                messages.error(request, "You cannot book a past date.")
+                return redirect('booking')
             appointment_time = request.POST.get('appointment_time')
             special_request = request.POST.get('special_request')
             with transaction.atomic():
@@ -66,7 +71,7 @@ def booking(request):
             messages.error(request, 'Something went wrong!')
             return redirect('booking')
 
-    return render(request, 'booking.html')
+    return render(request, 'booking.html', {'today_date': today_date})
 
 def contact(request):
     if request.method == 'POST':

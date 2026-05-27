@@ -68,7 +68,7 @@
                         <li class="{% if request.resolver_match.url_name == 'about' %}menu-active{% endif %}"><a href="{% url "about" %}">About</a></li>
                         <li class="{% if request.resolver_match.url_name == 'service' %}menu-active{% endif %}"><a href="{% url "service" %}">Services</a></li>
                         <li class="{% if request.resolver_match.url_name == 'booking' %}menu-active{% endif %}"><a href="{% url "booking" %}">Booking</a></li>
-                        <li class="menu-has-children, {% if request.resolver_match.url_name == 'sign_up' %}menu-active{% endif %}"><a href="#">Account</a>
+                        <li class="menu-has-children {% if request.resolver_match.url_name == 'sign_up' %}menu-active{% endif %}"><a href="#">Account</a>
                             <ul>
                                 <li><a href="{% url "sign_up" %}">Sign Up</a></li>
                                 <li><a href="{% url "sign_in" %}">Sign In</a></li>
