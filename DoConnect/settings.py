@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'template_partials',
     'app',
     'accounts',
+    'CRM',
 ]
 
 MIDDLEWARE = [
