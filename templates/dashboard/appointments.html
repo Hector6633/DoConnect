@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+{% load partials %}
+
+{% include "dashboard/partials/components.html#header" %}
+
+
+<body>
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        {% include "dashboard/partials/components.html#spinner" %}
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        {% include "dashboard/partials/components.html#sidebar" %}
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            {% include "dashboard/partials/components.html#navbar" %}
+            <!-- Navbar End -->
+
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Patient Appointments</h6>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Token Number</th>
+                                            <th scope="col">Full Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Mobile Number</th>
+                                            <th scope="col">Service</th>
+                                            <th scope="col">Appointment Date</th>
+                                            <th scope="col">Appointment Time</th>
+                                            <th scope="col">Special Request</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for appointment in appointments %}
+                                        <tr>
+                                            <th scope="row">{{appointment.token_number}}</th>
+                                            <td>{{appointment.full_name}}</td>
+                                            <td>{{appointment.email}}</td>
+                                            <td>{{appointment.mobile_number}}</td>
+                                            <td>{{appointment.service}}</td>
+                                            <td>{{appointment.appointment_date}}</td>
+                                            <td>{{appointment.appointment_time}}</td>
+                                            <td>{{appointment.special_request}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+
+            <!-- Footer Start -->
+            {% include "dashboard/partials/components.html#footer" %}
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    {% include "dashboard/partials/scripts.html#js_scripts" %}
+
+</body>
+
+</html>

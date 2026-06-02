@@ -10,8 +10,11 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "icon/apple-touch-icon.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "icon/favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "icon/favicon-16x16.png" %}">
+    <link rel="manifest" href="{% static "icon/site.webmanifest" %}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,14 +55,16 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                        {% if user.is_authenticated %}
+                        <h6 class="mb-0">{{user.username | upper}}</h6>
+                        {% endif %}
+                        <span>Doconnect</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="{% url "dashboard_index" %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'dashboard_index' %}active{% endif %}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Appointments</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Contacts</a>
+                    <a href="{% url "appointments" %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'appointments' %}active{% endif %}"><i class="fa fa-file-alt me-2"></i>Appointments</a>
+                    <a href="{% url "feedbacks" %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'feedbacks' %}active{% endif %}"><i class="fa fa-chart-bar me-2"></i>Contacts</a>
                 </div>
             </nav>
         </div>
@@ -80,11 +85,13 @@
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            {% if user.is_authenticated %}
+                            <span class="d-none d-lg-inline-flex">{{user.username}}</span>
+                            {% endif %}
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="{% url "index" %}" class="dropdown-item">Doc Home</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <a href="{% url "sign_out" %}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
