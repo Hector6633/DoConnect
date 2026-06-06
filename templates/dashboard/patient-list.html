@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+{% load partials %}
+
+{% include "dashboard/partials/components.html#header" %}
+
+
+<body>
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        {% include "dashboard/partials/components.html#spinner" %}
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        {% include "dashboard/partials/components.html#sidebar" %}
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            {% include "dashboard/partials/components.html#navbar" %}
+            <!-- Navbar End -->
+
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Patient List</h6>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Patient ID</th>
+                                            <th scope="col">Full Name</th>
+                                            <th scope="col">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for patient_data in patient_data %}
+                                        <tr>
+                                            <th scope="row">{{patient_data.id}}</th>
+                                            <td>{{patient_data.username}}</td>
+                                            <td>{{patient_data.email}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+
+            <!-- Footer Start -->
+            {% include "dashboard/partials/components.html#footer" %}
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    {% include "dashboard/partials/scripts.html#js_scripts" %}
+
+</body>
+
+</html>

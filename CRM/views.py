@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from app.models import Appointment, Contact_Info
+from django.db.models import Q
+from django.contrib import messages
 # Create your views here.
 
 def dashboard_index(request):
@@ -30,3 +32,14 @@ def feedbacks(request):
         'feedbacks': Contact_Info.objects.all(),
     }
     return render(request, 'dashboard/contacts.html', total_feedbacks)
+
+def search_patients(request):
+    if request.method == 'POST':
+        data = request.POST['search']
+        if data != None:
+            search_result = User.objects.filter(Q(username__icontains=data)|Q(email__icontains=data)|Q(id__contains=data))
+            return render(request, 'dashboard/patient-list.html', {'patient_data': search_result})
+        else:
+            error_msg = 'Patient not Found'
+            messages.error(request, error_msg)
+            return redirect('search_patients')
